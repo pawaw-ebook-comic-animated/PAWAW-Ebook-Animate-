@@ -35,6 +35,7 @@ html,body{width:100%;height:100%;background:#000;overflow-x:hidden;font-family:'
 #bw.active{opacity:1;pointer-events:all}
 #bgc{position:absolute;inset:0;width:100%;height:100%;opacity:.2}
 
+
 /* BOOK */
 #bc{position:relative;z-index:10;display:flex;align-items:center;justify-content:center;width:100%;flex:1;min-height:0;padding:.5rem}
 #book{position:relative;display:flex;align-items:stretch;width:min(920px,97vw);height:min(620px,78vh);filter:drop-shadow(0 25px 50px rgba(0,0,0,.95)) drop-shadow(0 0 30px rgba(139,26,26,.25))}
@@ -58,6 +59,65 @@ html,body{width:100%;height:100%;background:#000;overflow-x:hidden;font-family:'
 @keyframes fbo{0%{opacity:1;transform:perspective(1200px) rotateY(0)}100%{opacity:0;transform:perspective(1200px) rotateY(88deg)}}
 @keyframes fbi{0%{opacity:0;transform:perspective(1200px) rotateY(-88deg)}100%{opacity:1;transform:perspective(1200px) rotateY(0)}}
 
+
+/* Le conteneur du grimoire */
+.grimoire-primitif {
+  position: relative;
+  width: 90vw;
+  max-width: 1000px;
+  height: 80vh;
+  background: #1a0f08; /* Cuir très sombre */
+  border-radius: 10px;
+  box-shadow: 
+    inset 0 0 50px rgba(0,0,0,0.9), 
+    0 20px 50px rgba(0,0,0,0.8);
+  padding: 40px;
+}
+
+/* L'effet de liasses de parchemins empilés en fond */
+.grimoire-primitif::before,
+.grimoire-primitif::after {
+  content: "";
+  position: absolute;
+  background: #d4b886; /* Couleur vieux papyrus */
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+  border: 1px solid rgba(139, 69, 19, 0.4);
+}
+
+/* Feuille du dessous (légèrement tournée à gauche) */
+.grimoire-primitif::before {
+  inset: 20px 10px 15px 25px;
+  transform: rotate(-1.5deg);
+  z-index: 1;
+}
+
+/* Feuille intermédiaire (légèrement tournée à droite) */
+.grimoire-primitif::after {
+  inset: 15px 30px 20px 15px;
+  transform: rotate(1deg);
+  z-index: 2;
+}
+
+/* La page active (par dessus) */
+.page-active-primitive {
+  position: relative;
+  z-index: 3;
+  height: 100%;
+  background: url('texture-parchemin.jpg') #e8d4a8; /* Texture de base */
+  border: 4px solid transparent;
+  /* Utilisation d'un motif SVG tribal pour la bordure */
+  border-image: url('bordure-maya-africaine.svg') 30 stretch;
+  padding: 30px;
+  /* Effet de bords rongés par le temps via SVG */
+  filter: url('#bords-dechires'); 
+
+
+
+
+
+
+
+  
 /* HEADER / FOOTER */
 .ph,.pf{background:rgba(0,0,0,.9);color:var(–parch);font-family:‘IM Fell English’,serif;font-size:clamp(.55rem,1.1vw,.78rem);line-height:1.5;padding:.45rem 1rem;z-index:5;flex-shrink:0;font-style:italic;text-align:center;position:relative}
 .ph{border-bottom:1px solid rgba(212,160,23,.35)}
@@ -233,10 +293,7 @@ content:’’;position:absolute;border:6px solid transparent;pointer-events:non
 #nav{gap:.6rem;padding:.4rem .7rem}
 .nb{padding:.4rem .9rem;font-size:.62rem}
 }
-</style>
 
-</head>
-<body>
 
 <!-- LANDING -->
 
